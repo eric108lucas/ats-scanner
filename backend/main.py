@@ -60,8 +60,10 @@ async def scan_resume(request:ScanRequest):
         prompt = f"You are an expert ATSanalyst. Analyze this resume against the job description.\n\nRESUME:\n{request.resume_text}\n\nJOB DESCRIPTION:\n{request.job_description}\n\nReturn JSON only: {{\"match_score\":0,\"missing_keywords\":[],\"improvements\":[\"\",\"\",\"\"],\"verdict\":\"\",\"summary\":\"\"}}"
         msg = client.messages.create(model='claude-3-5-haiku-20241022',max_tokens=1024,messages=[{'role':'user','content':prompt}])
         return parse_scan_response(msg.content[0].text)
-    except anthropic.APIError: raise HTTPException(status_code=503,detail='AI unavailable')
-    except: raise HTTPException(status_code=500,detail='Unexpected error')
+    except Exception as e:
+        import traceback; traceback.print_exc()
+        print(f'SCAN ERROR: {type(e).__name__}: {e}')
+        raise HTTPException(status_code=503,detail=f'Error: {type(e).__name__}: {str(e)[:100]}')
 
 @app.post('/api/create-checkout-session')
 async def create_checkout_session(request:CheckoutSessionRequest):
