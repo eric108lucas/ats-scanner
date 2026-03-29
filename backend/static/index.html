@@ -757,7 +757,7 @@
         }
 
         .paywall-features li:before {
-            content: "✓ ";
+            content: "â ";
             color: var(--success);
             font-weight: bold;
             margin-right: 0.5rem;
@@ -881,7 +881,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Get Your Resume Past the ATS — Instantly</h1>
+            <h1>Get Your Resume Past the ATS â Instantly</h1>
             <p class="subtitle">Let AI analyze your resume against any job description. Discover what's missing and how to improve in seconds.</p>
             <button class="cta-button" onclick="document.getElementById('scanner').scrollIntoView({behavior: 'smooth'})">Start Scanning</button>
         </div>
@@ -907,7 +907,7 @@
                                 <textarea id="resume" placeholder="Paste your resume here or upload a file..." required></textarea>
                             </div>
                             <div class="file-upload-area" onclick="document.getElementById('resumeFile').click()">
-                                <div class="upload-icon">📄</div>
+                                <div class="upload-icon">ð</div>
                                 <div class="upload-text">Click to upload .txt or .docx file</div>
                                 <input type="file" id="resumeFile" accept=".txt,.docx" onchange="handleFileUpload(event, 'resume')">
                             </div>
@@ -976,7 +976,7 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div style="margin-bottom: 1rem;">
-                        <div class="stars">★★★★★</div>
+                        <div class="stars">âââââ</div>
                     </div>
                     <p class="testimonial-text">"I was applying to jobs without getting any interviews. ATSCheck showed me I was missing critical keywords. After making the suggested improvements, I got 3 interview requests within a week!"</p>
                     <div class="testimonial-author">
@@ -990,7 +990,7 @@
 
                 <div class="testimonial-card">
                     <div style="margin-bottom: 1rem;">
-                        <div class="stars">★★★★★</div>
+                        <div class="stars">âââââ</div>
                     </div>
                     <p class="testimonial-text">"As someone switching careers, I didn't know what keywords companies were looking for. This tool gave me actionable insights that made my resume actually relevant to my target industry."</p>
                     <div class="testimonial-author">
@@ -1004,7 +1004,7 @@
 
                 <div class="testimonial-card">
                     <div style="margin-bottom: 1rem;">
-                        <div class="stars">★★★★★</div>
+                        <div class="stars">âââââ</div>
                     </div>
                     <p class="testimonial-text">"The verdict feature helped me quickly understand if my resume stood a chance. Instead of applying blindly, I used the feedback to tailor my application. Landed my dream job!"</p>
                     <div class="testimonial-author">
@@ -1031,7 +1031,7 @@
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>How does ATSCheck analyze my resume?</span>
-                        <span class="faq-toggle">▼</span>
+                        <span class="faq-toggle">â¼</span>
                     </div>
                     <div class="faq-answer">
                         <p>ATSCheck uses advanced AI powered by Claude to analyze how well your resume matches the job description. It looks for keyword matches, formatting compatibility, and structural alignment with what ATSs typically scan for. Our algorithm checks for relevance, specificity, and presence of critical terms that applicant tracking systems prioritize.</p>
@@ -1041,7 +1041,7 @@
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Is my data private and secure?</span>
-                        <span class="faq-toggle">▼</span>
+                        <span class="faq-toggle">â¼</span>
                     </div>
                     <div class="faq-answer">
                         <p>Yes. Your resume and job description data are processed securely through our API and are never stored or used for any purpose other than providing your analysis. We don't retain copies of your data after processing. All communication is encrypted over HTTPS.</p>
@@ -1051,7 +1051,7 @@
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>What's the difference between the verdicts?</span>
-                        <span class="faq-toggle">▼</span>
+                        <span class="faq-toggle">â¼</span>
                     </div>
                     <div class="faq-answer">
                         <p><strong>Likely to pass:</strong> Your resume has strong keyword alignment and good formatting for ATS systems. <strong>Needs improvement:</strong> You're missing some key terms or have formatting issues that may hurt you. <strong>Unlikely to pass:</strong> Your resume has significant gaps or mismatches with the job requirements. We recommend making the suggested improvements before applying.</p>
@@ -1061,17 +1061,17 @@
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>How many resumes can I scan?</span>
-                        <span class="faq-toggle">▼</span>
+                        <span class="faq-toggle">â¼</span>
                     </div>
                     <div class="faq-answer">
-                        <p>You get one free scan per session. After that, you can continue scanning for just $2.99 per scan. This pay-as-you-go model means you only pay when you need it—perfect for tailoring multiple applications to different job descriptions.</p>
+                        <p>You get one free scan per session. After that, you can continue scanning for just $2.99 per scan. This pay-as-you-go model means you only pay when you need itâperfect for tailoring multiple applications to different job descriptions.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Can I upload my resume as a file?</span>
-                        <span class="faq-toggle">▼</span>
+                        <span class="faq-toggle">â¼</span>
                     </div>
                     <div class="faq-answer">
                         <p>Yes! You can upload .txt or .docx files. We'll extract the text and analyze it. Note that .docx files are converted to plain text, so some formatting may be lost, but all content will be preserved and analyzed.</p>
@@ -1091,7 +1091,7 @@
     <!-- Paywall Modal -->
     <div class="paywall-modal" id="paywallModal">
         <div class="paywall-content">
-            <button class="close-paywall" onclick="closePaywall()">×</button>
+            <button class="close-paywall" onclick="closePaywall()">Ã</button>
             <h2>Unlock More Scans</h2>
             <p>You've used your free scan for this session. Continue analyzing more resumes for just $2.99 per scan.</p>
 
@@ -1144,18 +1144,1215 @@
             const params = new URLSearchParams(window.location.search);
             const sessionId = params.get('session_id');
             if (sessionId) {
+                // Show immediate feedback while we verify with backend
+                showSuccessMessage('Verifying your payment…');
+                // Clean URL immediately so refreshing doesn't re-trigger
+                window.history.replaceState({}, document.title, window.location.pathname);
                 try {
                     const response = await fetch(`${API_BASE_URL}/api/verify-session?session_id=${sessionId}`);
                     const data = await response.json();
                     if (data.paid) {
-                        resetScansCounter();
-                        showSuccessMessage('Payment successful! Your scan counter has been reset.');
+                        // Store session_id as a single-use paid scan credit
+                        localStorage.setItem('ats_paid_session', sessionId);
+                        showSuccessMessage('Payment confirmed! Click "Scan My Resume" to use your paid scan.');
+                    } else {
+                        showErrorMessage('Payment could not be verified. Please contact support.');
                     }
                 } catch (e) {
                     console.error('Could not verify payment session:', e);
+                    showErrorMessage('Could not verify payment. Please refresh and try again.');
                 }
-                // Clean URL
+            }
+        }
+
+        // Handle form submission
+        async function handleScan(event) {
+            event.preventDefault();
+
+            const resume = document.getElementById('resume').value.trim();
+            const jobDescription = document.getElementById('jobDescription').value.trim();
+
+            if (!resume || !jobDescription) {
+                showErrorMessage('Please fill in both the resume and job description.');
+                return;
+            }
+
+            // Check if free scan is used up
+            const paidSession = localStorage.getItem('ats_paid_session');
+            if (getScansUsed() >= FREE_SCANS && !paidSession) {
+                showPaywall();
+                return;
+            }
+
+            // Perform scan, passing paid session_id if available
+            await performScan(resume, jobDescription, paidSession);
+
+            if (paidSession) {
+                // Paid scan used — clear the credit
+                localStorage.removeItem('ats_paid_session');
+            } else {
+                // Free scan used — increment counter
+                incrementScans();
+            }viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATSCheck - Get Your Resume Past the ATS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg-dark: #1a1a2e;
+            --card-bg: #16213e;
+            --accent: #0f3460;
+            --cta: #e94560;
+            --text-light: #e8e8e8;
+            --text-muted: #b0b0b0;
+            --border: #2a2a4e;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f0f23 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cta);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--cta);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.1) 0%, rgba(15, 52, 96, 0.1) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--cta) 0%, #d43552 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Scanner Section */
+        .scanner-section {
+            padding: 4rem 2rem;
+        }
+
+        .scanner-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .scanner-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .scanner-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scanner-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 150px;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--cta);
+            box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+        }
+
+        .file-upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--cta);
+            background: rgba(233, 69, 96, 0.05);
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--cta);
+        }
+
+        .upload-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .input-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            color: var(--text-muted);
+        }
+
+        .input-divider::before,
+        .input-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .scanner-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        /* Scan Button */
+        .scan-button {
+            background: linear-gradient(135deg, var(--cta) 0%, #d43552 100%);
+            color: white;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        .scan-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+        }
+
+        .scan-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .scan-button.loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Results Section */
+        .results-section {
+            display: none;
+            padding: 4rem 2rem;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .score-card {
+            text-align: center;
+        }
+
+        .score-gauge {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .gauge-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(
+                var(--cta) 0deg,
+                var(--cta) calc(var(--score) * 3.6deg),
+                rgba(255, 255, 255, 0.1) calc(var(--score) * 3.6deg),
+                rgba(255, 255, 255, 0.1) 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 0 12px var(--card-bg);
+        }
+
+        .gauge-text {
+            text-align: center;
+        }
+
+        .gauge-text .score-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-light);
+            display: block;
+        }
+
+        .gauge-text .score-percent {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .verdict-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .verdict-pass {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .verdict-needs {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .verdict-fail {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--error);
+        }
+
+        .summary-text {
+            color: var(--text-muted);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .keywords-section {
+            grid-column: 1 / -1;
+        }
+
+        .keywords-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .keyword-item {
+            background: rgba(233, 69, 96, 0.1);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .keyword-icon {
+            color: var(--cta);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .keyword-text {
+            font-size: 0.95rem;
+        }
+
+        .improvements-section {
+            grid-column: 1 / -1;
+            margin-top: 2rem;
+        }
+
+        .improvements-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .improvements-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .improvement-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--cta);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .improvement-item strong {
+            color: var(--cta);
+        }
+
+        .improvement-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 50%;
+            color: var(--cta);
+            text-align: center;
+            line-height: 30px;
+            margin-right: 0.75rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .scan-again-btn {
+            background: var(--accent);
+            color: var(--text-light);
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-top: 2rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scan-again-btn:hover {
+            background: var(--card-bg);
+            color: var(--cta);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 4rem 2rem;
+            background: rgba(233, 69, 96, 0.05);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-text {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            flex-grow: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cta) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .author-info {
+            flex-grow: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-light);
+            display: block;
+        }
+
+        .author-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .stars {
+            color: var(--cta);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 4rem 2rem;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+            font-weight: 600;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(233, 69, 96, 0.1);
+        }
+
+        .faq-toggle {
+            color: var(--cta);
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(22, 33, 62, 0.8);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--cta);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--text-light);
+        }
+
+        /* Paywall Modal */
+        .paywall-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .paywall-modal.show {
+            display: flex;
+        }
+
+        .paywall-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 500px;
+            border: 1px solid var(--border);
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .paywall-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .paywall-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .paywall-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--cta);
+            margin: 1.5rem 0;
+        }
+
+        .paywall-features {
+            text-align: left;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .paywall-features li {
+            list-style: none;
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+        }
+
+        .paywall-features li:before {
+            content: "â ";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .lemon-button {
+            background: linear-gradient(135deg, var(--cta) 0%, #d43552 100%);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .lemon-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+        }
+
+        .close-paywall {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 2rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            transition: color 0.3s;
+        }
+
+        .close-paywall:hover {
+            color: var(--text-light);
+        }
+
+        /* Error Message */
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #86efac;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-box {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(233, 69, 96, 0.2);
+            border-top: 4px solid var(--cta);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">ATSCheck</a>
+            <ul class="nav-links">
+                <li><a href="#scanner">Scan Resume</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get Your Resume Past the ATS â Instantly</h1>
+            <p class="subtitle">Let AI analyze your resume against any job description. Discover what's missing and how to improve in seconds.</p>
+            <button class="cta-button" onclick="document.getElementById('scanner').scrollIntoView({behavior: 'smooth'})">Start Scanning</button>
+        </div>
+    </section>
+
+    <!-- Scanner Section -->
+    <section class="scanner-section" id="scanner">
+        <div class="container">
+            <div class="scanner-container">
+                <div class="scanner-header">
+                    <h2>Analyze Your Resume</h2>
+                    <p>Paste your resume and job description below to get instant ATS feedback</p>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+
+                <form id="scanForm" onsubmit="handleScan(event)">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Your Resume</label>
+                            <div class="input-wrapper">
+                                <textarea id="resume" placeholder="Paste your resume here or upload a file..." required></textarea>
+                            </div>
+                            <div class="file-upload-area" onclick="document.getElementById('resumeFile').click()">
+                                <div class="upload-icon">ð</div>
+                                <div class="upload-text">Click to upload .txt or .docx file</div>
+                                <input type="file" id="resumeFile" accept=".txt,.docx" onchange="handleFileUpload(event, 'resume')">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Job Description</label>
+                            <div class="input-wrapper">
+                                <textarea id="jobDescription" placeholder="Paste the job description here..." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="scan-button" id="scanBtn">Scan My Resume</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="resultsSection">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-grid">
+                    <!-- Score Card -->
+                    <div class="score-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">ATS Match Score</h3>
+                        <div class="score-gauge">
+                            <div class="gauge-circle" id="gaugeCircle">
+                                <div class="gauge-text">
+                                    <span class="score-number" id="scoreNumber">0</span>
+                                    <span class="score-percent">%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="verdictBadge" class="verdict-badge">Loading...</div>
+                        <p class="summary-text" id="summaryText"></p>
+                    </div>
+
+                    <!-- Keywords Section -->
+                    <div class="keywords-section">
+                        <h3>Missing Keywords</h3>
+                        <div class="keywords-grid" id="keywordsGrid"></div>
+                    </div>
+                </div>
+
+                <!-- Improvements Section -->
+                <div class="improvements-section">
+                    <h3>Top 3 Improvements</h3>
+                    <div class="improvements-list" id="improvementsList"></div>
+                </div>
+
+                <button class="scan-again-btn" onclick="resetForm()">Scan Another Resume</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <h2>Loved by Job Seekers</h2>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Join thousands who've improved their ATS match scores</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div style="margin-bottom: 1rem;">
+                        <div class="stars">âââââ</div>
+                    </div>
+                    <p class="testimonial-text">"I was applying to jobs without getting any interviews. ATSCheck showed me I was missing critical keywords. After making the suggested improvements, I got 3 interview requests within a week!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <span class="author-name">Sarah Martinez</span>
+                            <span class="author-title">Marketing Manager</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div style="margin-bottom: 1rem;">
+                        <div class="stars">âââââ</div>
+                    </div>
+                    <p class="testimonial-text">"As someone switching careers, I didn't know what keywords companies were looking for. This tool gave me actionable insights that made my resume actually relevant to my target industry."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JC</div>
+                        <div class="author-info">
+                            <span class="author-name">James Chen</span>
+                            <span class="author-title">Career Changer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div style="margin-bottom: 1rem;">
+                        <div class="stars">âââââ</div>
+                    </div>
+                    <p class="testimonial-text">"The verdict feature helped me quickly understand if my resume stood a chance. Instead of applying blindly, I used the feedback to tailor my application. Landed my dream job!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EP</div>
+                        <div class="author-info">
+                            <span class="author-name">Emma Patel</span>
+                            <span class="author-title">Software Engineer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Everything you need to know about ATSCheck</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How does ATSCheck analyze my resume?</span>
+                        <span class="faq-toggle">â¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>ATSCheck uses advanced AI powered by Claude to analyze how well your resume matches the job description. It looks for keyword matches, formatting compatibility, and structural alignment with what ATSs typically scan for. Our algorithm checks for relevance, specificity, and presence of critical terms that applicant tracking systems prioritize.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is my data private and secure?</span>
+                        <span class="faq-toggle">â¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Your resume and job description data are processed securely through our API and are never stored or used for any purpose other than providing your analysis. We don't retain copies of your data after processing. All communication is encrypted over HTTPS.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What's the difference between the verdicts?</span>
+                        <span class="faq-toggle">â¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Likely to pass:</strong> Your resume has strong keyword alignment and good formatting for ATS systems. <strong>Needs improvement:</strong> You're missing some key terms or have formatting issues that may hurt you. <strong>Unlikely to pass:</strong> Your resume has significant gaps or mismatches with the job requirements. We recommend making the suggested improvements before applying.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How many resumes can I scan?</span>
+                        <span class="faq-toggle">â¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You get one free scan per session. After that, you can continue scanning for just $2.99 per scan. This pay-as-you-go model means you only pay when you need itâperfect for tailoring multiple applications to different job descriptions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I upload my resume as a file?</span>
+                        <span class="faq-toggle">â¼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can upload .txt or .docx files. We'll extract the text and analyze it. Note that .docx files are converted to plain text, so some formatting may be lost, but all content will be preserved and analyzed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ATSCheck. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Paywall Modal -->
+    <div class="paywall-modal" id="paywallModal">
+        <div class="paywall-content">
+            <button class="close-paywall" onclick="closePaywall()">Ã</button>
+            <h2>Unlock More Scans</h2>
+            <p>You've used your free scan for this session. Continue analyzing more resumes for just $2.99 per scan.</p>
+
+            <div class="paywall-price">$2.99</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">per scan</p>
+
+            <ul class="paywall-features">
+                <li>Instant ATS analysis</li>
+                <li>Missing keywords report</li>
+                <li>3 actionable improvements</li>
+                <li>Final verdict</li>
+            </ul>
+
+            <button class="lemon-button" id="lemonSqueezyBtn" onclick="triggerPayment()">
+                Get More Scans
+            </button>
+
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Secure payment powered by Stripe</p>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-box">
+            <div class="loading-spinner"></div>
+            <p>Analyzing your resume...</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        // Same domain in production (frontend served by FastAPI), localhost in dev
+        const API_BASE_URL = window.location.hostname === 'localhost'
+            ? 'http://localhost:8000'
+            : '';
+
+        // Stripe checkout is handled via backend session creation
+
+        // Track scans in localStorage
+        const SCANS_KEY = 'atscheck_scans_used';
+        const FREE_SCANS = 1;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkForPaymentReturn();
+        });
+
+        // Check if returning from Stripe payment
+        async function checkForPaymentReturn() {
+            const params = new URLSearchParams(window.location.search);
+            const sessionId = params.get('session_id');
+            if (sessionId) {
+                // Show immediate feedback while we verify with backend
+                showSuccessMessage('Verifying your payment…');
+                // Clean URL immediately so refreshing doesn't re-trigger
                 window.history.replaceState({}, document.title, window.location.pathname);
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/verify-session?session_id=${sessionId}`);
+                    const data = await response.json();
+                    if (data.paid) {
+                        // Store session_id as a single-use paid scan credit
+                        localStorage.setItem('ats_paid_session', sessionId);
+                        showSuccessMessage('Payment confirmed! Click "Scan My Resume" to use your paid scan.');
+                    } else {
+                        showErrorMessage('Payment could not be verified. Please contact support.');
+                    }
+                } catch (e) {
+                    console.error('Could not verify payment session:', e);
+                    showErrorMessage('Could not verify payment. Please refresh and try again.');
+                }
             }
         }
 
@@ -1185,7 +2382,7 @@
         }
 
         // Perform the actual scan
-        async function performScan(resumeText, jobDescText) {
+        async function performScan(resumeText, jobDescText, sessionId = null) {
             const scanBtn = document.getElementById('scanBtn');
             const loadingOverlay = document.getElementById('loadingOverlay');
             const errorMsg = document.getElementById('errorMessage');
@@ -1206,6 +2403,7 @@
                     body: JSON.stringify({
                         resume_text: resumeText,
                         job_description: jobDescText,
+                        ...(sessionId ? { session_id: sessionId } : {})
                     }),
                 });
 
@@ -1395,7 +2593,7 @@
             const successMsg = document.getElementById('successMessage');
             successMsg.textContent = message;
             successMsg.classList.add('show');
-            setTimeout(() => successMsg.classList.remove('show'), 4000);
+            setTimeout(() => successMsg.classList.remove('show'), 10000);
         }
 
         // FAQ toggle
