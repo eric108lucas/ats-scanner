@@ -58,7 +58,7 @@ async def scan_resume(request:ScanRequest):
     if len(request.resume_text)>50000 or len(request.job_description)>10000: raise HTTPException(status_code=400,detail='Input too long')
     try:
         prompt = f"You are an expert ATSanalyst. Analyze this resume against the job description.\n\nRESUME:\n{request.resume_text}\n\nJOB DESCRIPTION:\n{request.job_description}\n\nReturn JSON only: {{\"match_score\":0,\"missing_keywords\":[],\"improvements\":[\"\",\"\",\"\"],\"verdict\":\"\",\"summary\":\"\"}}"
-        msg = client.messages.create(model='claude-3-5-haiku-20241022',max_tokens=1024,messages=[{'role':'user','content':prompt}])
+        msg = client.messages.create(model='claude-haiku-4-5-20251001',max_tokens=1024,messages=[{'role':'user','content':prompt}])
         return parse_scan_response(msg.content[0].text)
     except Exception as e:
         import traceback; traceback.print_exc()
