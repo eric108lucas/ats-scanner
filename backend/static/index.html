@@ -891,7 +891,8 @@
         <div class="container">
             <h1>Get Your Resume Past the ATS Ã¢ÂÂ Instantly</h1>
             <p class="subtitle">Let AI analyze your resume against any job description. Discover what's missing and how to improve in seconds.</p>
-            <button class="cta-button" onclick="document.getElementById('scanner').scrollIntoView({behavior: 'smooth'})">Start Scanning</button>
+            <p style="margin-top:0.75rem; font-size:0.95rem; background: rgba(233,69,96,0.15); display:inline-block; padding: 0.4rem 1rem; border-radius: 20px; color: #f87a8f; border: 1px solid rgba(233,69,96,0.3);">First scan is FREE &mdash; no account needed</p>
+            <br><button class="cta-button" style="margin-top:1.25rem;" onclick="document.getElementById('scanner').scrollIntoView({behavior: 'smooth'})">Start Scanning</button>
         </div>
     </section>
 
@@ -901,7 +902,7 @@
             <div class="scanner-container">
                 <div class="scanner-header">
                     <h2>Analyze Your Resume</h2>
-                    <p>Paste your resume and job description below to get instant ATS feedback</p>
+                    <p>Paste your resume below for an instant ATS score. Add a job description for a targeted match analysis.</p>
                 </div>
 
                 <div id="errorMessage" class="error-message"></div>
@@ -922,9 +923,9 @@
                         </div>
 
                         <div class="input-group">
-                            <label>Job Description</label>
+                            <label>Job Description <span style="font-weight:400; font-size:0.82em; color: var(--text-muted);">(optional &mdash; for targeted match score)</span></label>
                             <div class="input-wrapper">
-                                <textarea id="jobDescription" placeholder="Paste the job description here..." required></textarea>
+                                <textarea id="jobDescription" placeholder="Paste the job description here for a targeted match score... or leave blank for a general ATS audit."></textarea>
                             </div>
                         </div>
                     </div>
@@ -978,7 +979,7 @@
         <div class="container">
             <div class="testimonials-header">
                 <h2>Loved by Job Seekers</h2>
-                <p style="color: var(--text-muted); margin-top: 0.5rem;">Join thousands who've improved their ATS match scores</p>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Real results from job seekers who improved their ATS scores</p>
             </div>
 
             <div class="testimonials-grid">
@@ -1162,6 +1163,7 @@
                     if (data.paid) {
                         // Store session_id as a single-use paid scan credit
                         localStorage.setItem('ats_paid_session', sessionId);
+                        gtag('event', 'purchase', { currency: 'USD', value: 2.99, transaction_id: sessionId });
                         showSuccessMessage('Payment confirmed! Click "Scan My Resume" to use your paid scan.');
                     } else {
                         showErrorMessage('Payment could not be verified. Please contact support.');
@@ -1180,8 +1182,8 @@
             const resume = document.getElementById('resume').value.trim();
             const jobDescription = document.getElementById('jobDescription').value.trim();
 
-            if (!resume || !jobDescription) {
-                showErrorMessage('Please fill in both the resume and job description.');
+            if (!resume) {
+                showErrorMessage('Please paste your resume to get started.');
                 return;
             }
 
