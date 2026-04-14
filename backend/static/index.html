@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
+        <!-- mammoth.js for DOCX text extraction -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <!-- Google tag (gtag.js) --
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR24TY65EQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,7 +17,7 @@
     <style>
         * {
             margin: 0;
-            padding: 0;
+            padding: 
             box-sizing: border-box
         }
 
@@ -711,6 +713,8 @@
         }
 
         .paywall-content {
+            position: relative;
+            width: 90%;
             background: var(--card-bg);
             border-radius: 12px;
             padding: 3rem;
@@ -1098,7 +1102,7 @@
     </footer>
 
     <!-- Paywall Modal -->
-    <div class="paywall-modal" id="paywallModal">
+    <div class="paywall-modal" id="paywallModal" onclick="if(event.target===this)closePaywall()">
         <div class="paywall-content">
             <button class="close-paywall" onclick="closePaywall()">ÃÂ</button>
             <h2>Unlock More Scans</h2>
@@ -1906,6 +1910,8 @@
         }
 
         .paywall-content {
+            position: relative;
+            width: 90%;
             background: var(--card-bg);
             border-radius: 12px;
             padding: 3rem;
@@ -2516,14 +2522,16 @@
                 if (file.type === 'text/plain') {
                     text = await file.text();
                 } else if (file.name.endsWith('.docx')) {
-                    // For DOCX, we'll read as text (basic extraction)
-                    // In production, you'd use a library like docx-parser
-                    text = await file.text();
-                    // Extract text from DOCX (this is a simple approach)
-                    text = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                    // Use mammoth.js for proper DOCX text extraction
+                    const arrayBuffer = await file.arrayBuffer();
+                    const result = await mammoth.extractRawText({ arrayBuffer });
+                    text = result.value;
+                    if (!text.trim()) {
+                        throw new Error('Could not extract text from DOCX. Please paste your resume as text instead.');
+                    }
                 } else {
-                    throw new Error('Only .txt and .docx files are supported');
-                }
+                throw new Error('Only .txt and .docx files are supported');
+            }
 
                 textarea.value = text;
                 showSuccessMessage(`File "${file.name}" uploaded successfully!`);
