@@ -52,7 +52,7 @@ verified_sessions: set = set()
 # Pydantic models
 class ScanRequest(BaseModel):
     resume_text: str
-    job_description: str
+    job_description: str = ""
     session_id: Optional[str] = None  # Required for paid scans
 
 
@@ -111,10 +111,10 @@ async def scan_resume(request: ScanRequest):
     Scan a resume against a job description using Claude AI.
     Returns match score, missing keywords, improvements, and verdict.
     """
-    if not request.resume_text or not request.job_description:
+    if not request.resume_text:
         raise HTTPException(
             status_code=400,
-            detail="Resume text and job description are required"
+            detail="Resume text is required"
         )
 
     # Validate paid session if provided (server-side gate for paid scans)
@@ -133,7 +133,8 @@ async def scan_resume(request: ScanRequest):
         )
 
     try:
-        prompt = f"""You are an expert ATS (Applicant Tracking System) analyst. Analyze the following resume against the job description and provide a detailed assessment.
+        if request.job_description.strip():
+            prompt = f"""You are an expert ATS (Applicant Tracking System) analyst. Analyze the following resume against the job description and provide a detailed assessment.
 
 RESUME:
 {request.resume_text}
@@ -156,6 +157,27 @@ Analyze this resume for ATS compatibility and relevance to the job. Provide your
 }}
 
 Be specific about missing keywords from the job description. Focus on technical skills, tools, certifications, and domain-specific terminology. Ensure the improvements are actionable and directly address gaps between the resume and job requirements."""
+        else:
+            prompt = f"""You are an expert ATS (Applicant Tracking System) analyst. Perform a general ATS compatibility audit on the following resume with no specific job description.
+
+RESUME:
+{request.resume_text}
+
+Analyze this resume for general ATS compatibility — formatting, keyword density, structure, and common issues. Provide your analysis in the following JSON format (no additional text, just the JSON):
+
+{{
+    "match_score": <integer 0-100, where 100 means excellent general ATS compatibility>,
+    "missing_keywords": [<list of 5-10 important keywords or skill categories that appear to be missing or thin based on the resume's apparent target role>],
+    "improvements": [
+        "<First specific, actionable improvement for better ATS compatibility>",
+        "<Second specific, actionable improvement for better ATS compatibility>",
+        "<Third specific, actionable improvement for better ATS compatibility>"
+    ],
+    "verdict": "<One of: 'Likely to pass ATS', 'Needs improvement', or 'Unlikely to pass ATS'>",
+    "summary": "<A 1-2 sentence plain English summary of the resume's general ATS readiness>"
+}}
+
+Focus on formatting issues (tables, columns, headers), keyword density, action verbs, quantified achievements, and whether the resume structure is ATS-friendly."""
 
         message = client.messages.create(
             model="claude-haiku-4-5-20251001",
