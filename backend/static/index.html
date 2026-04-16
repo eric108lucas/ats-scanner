@@ -777,24 +777,96 @@
             margin-right: 0.5rem;
         }
 
+        .paywall-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .paywall-option {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .paywall-option:hover {
+            border-color: var(--cta);
+            background: rgba(233,69,96,0.07);
+        }
+
+        .paywall-option.best-value {
+            border-color: var(--success);
+        }
+
+        .best-value-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.75rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+        }
+
+        .option-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .option-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .option-per {
+            font-size: 0.75rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+
         .lemon-button {
             background: linear-gradient(135deg, var(--cta) 0%, #d43552 100%);
             color: white;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
             transition: all 0.3s ease;
             font-weight: 600;
-            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
-            margin-bottom: 1rem;
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.3);
+            margin-top: 0.5rem;
         }
 
         .lemon-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+
+        .lemon-button.bundle-btn {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.3);
+        }
+
+        .lemon-button.bundle-btn:hover {
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.4);
         }
 
         .close-paywall {
@@ -1199,21 +1271,36 @@
         <div class="paywall-content">
             <button class="close-paywall" onclick="closePaywall()">×</button>
             <h2>Unlock More Scans</h2>
-            <p>You've used your free scan for this session. Continue analyzing more resumes for just $2.99 per scan.</p>
+            <p>You've used your free scan. Choose a plan to keep going:</p>
 
-            <div class="paywall-price">$2.99</div>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">per scan</p>
+            <div class="paywall-options">
+                <!-- Single scan -->
+                <div class="paywall-option">
+                    <span class="option-price">$2.99</span>
+                    <span class="option-desc">1 scan</span>
+                    <span class="option-per">$2.99 / scan</span>
+                    <button class="lemon-button" id="singleScanBtn" onclick="triggerPayment('single')">
+                        Buy 1 Scan
+                    </button>
+                </div>
+                <!-- Bundle -->
+                <div class="paywall-option best-value">
+                    <span class="best-value-badge">BEST VALUE</span>
+                    <span class="option-price">$9.99</span>
+                    <span class="option-desc">10 scans</span>
+                    <span class="option-per">$1.00 / scan — save 67%</span>
+                    <button class="lemon-button bundle-btn" id="bundleScanBtn" onclick="triggerPayment('bundle')">
+                        Buy 10 Scans
+                    </button>
+                </div>
+            </div>
 
             <ul class="paywall-features">
                 <li>Instant ATS analysis</li>
                 <li>Missing keywords report</li>
                 <li>3 actionable improvements</li>
-                <li>Final verdict</li>
+                <li>Final verdict — use anytime, no expiry</li>
             </ul>
-
-            <button class="lemon-button" id="lemonSqueezyBtn" onclick="triggerPayment()">
-                Get More Scans
-            </button>
 
             <p style="font-size: 0.85rem; color: var(--text-muted);">Secure payment powered by Stripe</p>
         </div>
@@ -1258,10 +1345,13 @@
                     const response = await fetch(`${API_BASE_URL}/api/verify-session?session_id=${sessionId}`);
                     const data = await response.json();
                     if (data.paid) {
-                        // Store session_id as a single-use paid scan credit
+                        // Store session_id + credits granted
+                        const scans = data.scans_granted || 1;
                         localStorage.setItem('ats_paid_session', sessionId);
-                        gtag('event', 'purchase', { currency: 'USD', value: 2.99, transaction_id: sessionId });
-                        showPaymentSuccessBanner();
+                        localStorage.setItem('ats_paid_credits', scans.toString());
+                        const value = scans >= 10 ? 9.99 : 2.99;
+                        gtag('event', 'purchase', { currency: 'USD', value, transaction_id: sessionId });
+                        showPaymentSuccessBanner(scans);
                     } else {
                         showErrorMessage('Payment could not be verified. Please contact support.');
                     }
@@ -1290,19 +1380,26 @@
             // Track scan attempt
             gtag('event', 'scan_initiated', { event_category: 'engagement' });
 
-            // Check for a paid scan credit first, then fall back to free scan counter
+            // Check for paid credits first, then fall back to free scan counter
             const paidSession = localStorage.getItem('ats_paid_session');
-            if (getScansUsed() >= FREE_SCANS && !paidSession) {
+            const paidCredits = parseInt(localStorage.getItem('ats_paid_credits') || '0');
+            if (getScansUsed() >= FREE_SCANS && !(paidSession && paidCredits > 0)) {
                 showPaywall();
                 return;
             }
 
             // Perform scan, passing paid session_id if available
-            await performScan(resume, jobDescription, paidSession);
+            await performScan(resume, jobDescription, paidSession && paidCredits > 0 ? paidSession : null);
 
-            if (paidSession) {
-                // Paid scan used — clear the credit
-                localStorage.removeItem('ats_paid_session');
+            if (paidSession && paidCredits > 0) {
+                // Decrement paid credits
+                const remaining = paidCredits - 1;
+                if (remaining <= 0) {
+                    localStorage.removeItem('ats_paid_session');
+                    localStorage.removeItem('ats_paid_credits');
+                } else {
+                    localStorage.setItem('ats_paid_credits', remaining.toString());
+                }
             } else {
                 // Free scan used — increment counter
                 incrementScans();
@@ -1480,9 +1577,13 @@
             document.getElementById('paywallModal').classList.remove('show');
         }
 
-        async function triggerPayment() {
-            gtag('event', 'checkout_initiated', { event_category: 'monetization', value: 2.99, currency: 'USD' });
-            const btn = document.getElementById('lemonSqueezyBtn');
+        async function triggerPayment(productType = 'single') {
+            const isBundle = productType === 'bundle';
+            const value = isBundle ? 9.99 : 2.99;
+            gtag('event', 'checkout_initiated', { event_category: 'monetization', value, currency: 'USD', product_type: productType });
+            const btnId = isBundle ? 'bundleScanBtn' : 'singleScanBtn';
+            const btn = document.getElementById(btnId);
+            const origText = btn.textContent;
             btn.disabled = true;
             btn.textContent = 'Loading...';
             try {
@@ -1491,7 +1592,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         success_url: window.location.origin + window.location.pathname,
-                        cancel_url: window.location.origin + window.location.pathname
+                        cancel_url: window.location.origin + window.location.pathname,
+                        product_type: productType
                     })
                 });
                 const data = await response.json();
@@ -1502,7 +1604,7 @@
                 }
             } catch (e) {
                 console.error('Payment error:', e);
-                btn.textContent = 'Get More Scans';
+                btn.textContent = origText;
                 btn.disabled = false;
                 alert('Could not start checkout. Please try again.');
             }
@@ -1573,10 +1675,17 @@
         }
 
         // Payment success banner
-        function showPaymentSuccessBanner() {
+        function showPaymentSuccessBanner(scansGranted = 1) {
             const banner = document.getElementById('paymentSuccessBanner');
+            const sub = banner.querySelector('.banner-sub');
+            if (scansGranted > 1) {
+                banner.querySelector('.banner-title').textContent = `Payment confirmed — ${scansGranted} scan credits are ready!`;
+                sub.textContent = `You have ${scansGranted} scans to use anytime. Click below to start.`;
+            } else {
+                banner.querySelector('.banner-title').textContent = 'Payment confirmed — your scan credit is ready!';
+                sub.textContent = 'Click below to analyze your resume now.';
+            }
             banner.classList.add('show');
-            // Scroll to top so banner is visible
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
