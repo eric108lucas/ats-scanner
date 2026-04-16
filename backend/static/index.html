@@ -6,6 +6,8 @@
     <title>ATSCheck - Get Your Resume Past the ATS</title>
     <!-- mammoth.js for DOCX text extraction -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <!-- PDF.js for PDF text extraction -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <!-- Google Analytics GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR24TY65EQ"></script>
     <script>
@@ -875,9 +877,100 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
         }
+
+        /* Payment Success Banner */
+        .payment-success-banner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2000;
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+            border-bottom: 3px solid #10b981;
+            padding: 1.25rem 2rem;
+            animation: slideDown 0.4s ease;
+        }
+
+        .payment-success-banner.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+
+        .payment-success-banner .banner-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .payment-success-banner .banner-text {
+            flex-grow: 1;
+        }
+
+        .payment-success-banner .banner-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ecfdf5;
+            display: block;
+        }
+
+        .payment-success-banner .banner-sub {
+            font-size: 0.9rem;
+            color: #a7f3d0;
+        }
+
+        .payment-success-banner .banner-cta {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.65rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .payment-success-banner .banner-cta:hover {
+            background: #059669;
+        }
+
+        .payment-success-banner .banner-close {
+            background: none;
+            border: none;
+            color: #a7f3d0;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .payment-success-banner .banner-close:hover {
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <!-- Payment Success Banner -->
+    <div class="payment-success-banner" id="paymentSuccessBanner">
+        <span class="banner-icon">✅</span>
+        <div class="banner-text">
+            <span class="banner-title">Payment confirmed — your scan credit is ready!</span>
+            <span class="banner-sub">Click below to analyze your resume now.</span>
+        </div>
+        <button class="banner-cta" onclick="dismissPaymentBanner()">Scan My Resume Now →</button>
+        <button class="banner-close" onclick="dismissPaymentBanner()" title="Dismiss">×</button>
+    </div>
+
     <!-- Navigation -->
     <nav>
         <div class="container">
@@ -921,8 +1014,8 @@
                             </div>
                             <div class="file-upload-area" onclick="document.getElementById('resumeFile').click()">
                                 <div class="upload-icon" style="font-size:1.5rem;">&#128196;</div>
-                                <div class="upload-text">Click to upload .txt or .docx file</div>
-                                <input type="file" id="resumeFile" accept=".txt,.docx" onchange="handleFileUpload(event, 'resume')">
+                                <div class="upload-text">Click to upload .pdf, .docx, or .txt file</div>
+                                <input type="file" id="resumeFile" accept=".txt,.docx,.pdf" onchange="handleFileUpload(event, 'resume')">
                             </div>
                         </div>
 
@@ -1168,7 +1261,7 @@
                         // Store session_id as a single-use paid scan credit
                         localStorage.setItem('ats_paid_session', sessionId);
                         gtag('event', 'purchase', { currency: 'USD', value: 2.99, transaction_id: sessionId });
-                        showSuccessMessage('Payment confirmed! Click "Scan My Resume" to use your paid scan.');
+                        showPaymentSuccessBanner();
                     } else {
                         showErrorMessage('Payment could not be verified. Please contact support.');
                     }
@@ -1190,6 +1283,9 @@
                 showErrorMessage('Please paste your resume to get started.');
                 return;
             }
+
+            // Dismiss payment banner as soon as user starts a scan
+            dismissPaymentBanner();
 
             // Track scan attempt
             gtag('event', 'scan_initiated', { event_category: 'engagement' });
@@ -1333,7 +1429,7 @@
             try {
                 let text = '';
 
-                if (file.type === 'text/plain') {
+                if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
                     text = await file.text();
                 } else if (file.name.endsWith('.docx')) {
                     // Use mammoth.js for proper DOCX text extraction
@@ -1343,8 +1439,25 @@
                     if (!text.trim()) {
                         throw new Error('Could not extract text from DOCX. Please paste your resume as text instead.');
                     }
+                } else if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
+                    // Use PDF.js for PDF text extraction
+                    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+                    pdfjsLib.GlobalWorkerOptions.workerSrc =
+                        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    const pages = [];
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const content = await page.getTextContent();
+                        pages.push(content.items.map(item => item.str).join(' '));
+                    }
+                    text = pages.join('\n');
+                    if (!text.trim()) {
+                        throw new Error('Could not extract text from PDF. This may be a scanned/image PDF. Please paste your resume as text instead.');
+                    }
                 } else {
-                    throw new Error('Only .txt and .docx files are supported');
+                    throw new Error('Only .pdf, .docx, and .txt files are supported');
                 }
 
                 textarea.value = text;
@@ -1457,6 +1570,20 @@
                 "'": '&#039;'
             };
             return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Payment success banner
+        function showPaymentSuccessBanner() {
+            const banner = document.getElementById('paymentSuccessBanner');
+            banner.classList.add('show');
+            // Scroll to top so banner is visible
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function dismissPaymentBanner() {
+            document.getElementById('paymentSuccessBanner').classList.remove('show');
+            // Scroll to scanner
+            document.getElementById('scanner').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Close paywall on Escape key
